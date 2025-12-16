@@ -1,0 +1,91 @@
+version: v1.0.0
+random_seed: 100
+
+data_root: data
+
+train_dataset: chexpert
+test_datasets: [chexpert]
+
+use_generated_images: false
+generated_image_dir: edema_only_images
+
+epoch: 200
+batch_size: 8
+
+print_freq_step: 10
+val_freq_epoch: 1
+
+image_size: 320
+model_name: ViT-L-14
+layers_out: [12,18,24]
+
+anomaly_tasks:
+  SourceTask: 0.25
+  IdentityTask: 0.25
+  CutpasteTask: 0.25
+  GaussIntensityChangeTask: 0.25
+
+prompt_maker: coop
+n_learnable_token: 8
+CSC: True
+class_token_positions: [end]
+
+save_root: results
+
+pooling_ratio_start: 0.10   
+pooling_ratio: 0.03        
+
+ema_decay: 0.999
+ema_eval_start_epoch: 9
+
+pixel_topq_ratio: 0.03
+pixel_topq_weight: 0.003
+
+loc_l1: 1e-3
+loc_tv: 1e-3
+loc_consistency: 1e-3
+loc_bg_suppress: 7e-4
+
+prompt_unfreeze_epoch: 3
+
+model_cfg:
+  embed_dim: 768
+  vision_cfg:
+    image_size: 320
+    layers: 24
+    width: 1024
+    patch_size: 14
+  text_cfg:
+    context_length: 77
+    vocab_size: 49408
+    width: 768
+    heads: 12
+    layers: 12
+
+prompts:
+  normal: [
+    normal,
+    healthy,
+    negative,
+    unremarkable,
+    clear,
+    asymptomatic,
+    normal findings,
+    no findings,
+    in good health,
+    no evidence of disease
+  ]
+
+  abnormal: [
+        abnormal,
+        positive,
+        symptomatic,
+        disease,
+        lesion,
+        pathological,
+        impaired,
+        evidence of disease,
+        abnormal finding,
+        pathological condition,
+        pathological abnormality
+  ]

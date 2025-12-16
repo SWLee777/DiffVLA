@@ -1,0 +1,76 @@
+version: v1.0.0
+random_seed: 100
+
+data_root: data
+
+train_dataset: busi
+test_datasets: [busi]
+
+epoch: 200
+batch_size: 8
+
+print_freq_step: 10
+val_freq_epoch: 1
+
+image_size: 224                
+model_name: ViT-L-14
+layers_out: [9,12,16]          
+
+use_generated_images: true
+generated_image_dir: generated_image_dir
+anomaly_tasks:
+  DiffusionTask: 0.30
+  CutpasteTask: 0.05
+  GaussIntensityChangeTask: 0.15
+  SourceTask: 0.40
+  IdentityTask: 0.10
+
+prompt_maker: coop
+n_learnable_token: 8
+CSC: True
+class_token_positions: [end]
+
+save_root: results
+
+pooling_ratio_start: 0.18
+pooling_ratio: 0.03
+
+ema_decay: 0.996
+ema_eval_start_epoch: 1
+
+pixel_topq_ratio: 0.08
+pixel_topq_weight: 0.005
+
+loc_l1: 1e-3
+loc_tv: 1e-3
+loc_consistency: 1e-3
+loc_bg_suppress: 1e-3
+prompt_unfreeze_epoch: 10      
+                                
+prompts:
+  normal: [
+    normal,
+    healthy,
+    negative,
+    unremarkable,
+    clear,
+    asymptomatic,
+    normal findings,
+    no findings,
+    in good health,
+    no evidence of disease
+  ]
+
+  abnormal: [
+    abnormal,
+    positive,
+    symptomatic,
+    disease,
+    lesion,
+    pathological,
+    impaired,
+    evidence of disease,
+    abnormal finding,
+    pathological condition,
+    pathological abnormality
+  ]
