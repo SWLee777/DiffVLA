@@ -15,6 +15,8 @@ Download the following datasets:
 - **BrainMRI   [[Google Drive]](https://drive.google.com/file/d/1kldE-5_wXaN-JR_8Y_mRCKQ6VZiyv3km/view?usp=drive_link) **  
 - **CheXpert   [[Google Drive]](https://drive.google.com/file/d/1pVYRipGC2VqjYP-wHdDFR-lLf7itLiUi/view?usp=drive_link) **
 
+- Refined CheXpert Annotations: To address the label noise in the original "No Finding" category of the public CheXpert dataset, we collaborated with pulmonologists from tertiary Grade-A hospitals to re-verify and rectify the annotations (comprising 4,500 normal training images and 502 test images). We have completed the curation of this refined subset, and the dataset is currently undergoing a final quality review. The rectified label files and train/test split lists will be uploaded to Google Drive shortly, and the direct download link will be updated here upon completion.   
+
 ## Generating anomalous image-mask pairs
 
 In this section, you can first train the anomaly generation model by (1). After that, you can run (2), which
